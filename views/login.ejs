@@ -1,0 +1,28 @@
+<!-- views/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <title>Log In - File Uploader</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Log In</h1>
+  <form action="/login" method="POST">
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email" required />
+    </div>
+    <br>
+    <div>
+      <label>Password:</label>
+      <input type="password" name="password" required />
+    </div>
+    <br>
+    <button type="submit">Log In</button>
+  </form>
+  <br>
+  <a href="/signup">Don't have an account? Sign Up</a>
+</body>
+</html>

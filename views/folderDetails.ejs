@@ -1,0 +1,40 @@
+<!-- views/folderDetails.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <title>Folder: <%= folder.name %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Folder: <%= folder.name %></h1>
+  <a href="/">← Back to Home</a>
+  
+  <hr>
+  <h2>Upload File to this Folder</h2>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="folderId" value="<%= folder.id %>" />
+    <div>
+      <input type="file" name="file" required />
+    </div>
+    <br>
+    <button type="submit">Upload</button>
+  </form>
+
+  <hr>
+  <h2>Files in this Folder</h2>
+  <ul>
+    <% if (folder.files && folder.files.length > 0) { %>
+      <% folder.files.forEach(file => { %>
+        <li>
+          📄 <a href="/files/<%= file.id %>"><%= file.name %></a> 
+          (<%= (file.size / 1024).toFixed(2) %> KB)
+        </li>
+      <% }) %>
+    <% } else { %>
+      <li>This folder is empty.</li>
+    <% } %>
+  </ul>
+</body>
+</html>

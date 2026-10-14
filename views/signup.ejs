@@ -1,0 +1,28 @@
+<!-- views/signup.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <title>Sign Up - File Uploader</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <form action="/signup" method="POST">
+    <div>
+      <label>Email:</label>
+      <input type="email" name="email" required />
+    </div>
+    <br>
+    <div>
+      <label>Password:</label>
+      <input type="password" name="password" required />
+    </div>
+    <br>
+    <button type="submit">Sign Up</button>
+  </form>
+  <br>
+  <a href="/login">Already have an account? Log In</a>
+</body>
+</html>

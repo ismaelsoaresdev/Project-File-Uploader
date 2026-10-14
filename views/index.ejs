@@ -1,0 +1,60 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Dashboard - File Uploader</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- Link your future CSS here -->
+</head>
+<body>
+  <h1>Welcome, <%= user.email %>!</h1>
+  <a href="/logout">Log Out</a>
+  <hr>
+
+  <h2>Create Folder</h2>
+  <form action="/folders/create" method="POST">
+    <input type="text" name="name" placeholder="Folder name" required />
+    <button type="submit">Create Folder</button>
+  </form>
+
+  <hr>
+  <h2>Your Folders</h2>
+  <ul>
+    <% if (userFolders.length > 0) { %>
+      <% userFolders.forEach(folder => { %>
+        <li>
+          📁 <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
+          <form action="/folders/<%= folder.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Delete folder and its contents?');">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    <% } else { %>
+      <li>No folders created yet.</li>
+    <% } %>
+  </ul>
+
+  <hr>
+  <h2>Upload File to Root</h2>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required />
+    <button type="submit">Upload</button>
+  </form>
+
+  <hr>
+  <h2>Files in Root</h2>
+  <ul>
+    <% if (userFiles.length > 0) { %>
+      <% userFiles.forEach(file => { %>
+        <li>
+          📄 <a href="/files/<%= file.id %>"><%= file.name %></a> 
+          (<%= (file.size / 1024).toFixed(2) %> KB)
+        </li>
+      <% }) %>
+    <% } else { %>
+      <li>No files in root.</li>
+    <% } %>
+  </ul>
+</body>
+</html>
